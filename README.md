@@ -12,6 +12,6 @@ Run the following commands:
     
     pip install tk
     
-    pip install psutil
+    pip install pygetwindow
 
 3) Place the attached .py file on any folder on your disk, then double click to run.

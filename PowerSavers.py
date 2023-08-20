@@ -23,7 +23,8 @@ def kill_non_essential_processes():
         "dllhost.exe",
         "sihost.exe",
         "textinputhost.exe",
-        "ctfmon.exe"
+        "ctfmon.exe",
+        "smartscreen.exe"
     ]
 
     terminated_processes = []

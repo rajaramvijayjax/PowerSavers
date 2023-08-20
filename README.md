@@ -2,10 +2,10 @@
 Tkinter script to optimize power usage on idle PCs.
 To use, 
 
-1) Install the latest version of Python using default options. Reboot.
+1) Download and Install the latest version of Python using default options, and reboot.
 https://www.python.org/downloads/
 
-2) Open Command Prompt in WIndows and visit the "pip.exe" folder location (typically C:\Users\YOURUSERNAME\AppData\Local\Programs\Python\Python311\Scripts"
+2) Open Command Prompt in Windows and visit the "pip.exe" folder location (typically C:\Users\YOURUSERNAME\AppData\Local\Programs\Python\Python311\Scripts"
 Run the following commands:
 
     pip install psutil

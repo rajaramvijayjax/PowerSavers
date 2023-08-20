@@ -15,8 +15,8 @@ def kill_non_essential_processes():
     essential_processes = [
         "System", "svchost.exe", "explorer.exe", "winlogon.exe",
         "csrss.exe", "lsass.exe", "spoolsv.exe", "services.exe",
-        "smss.exe", "conhost.exe", "wininit.exe", "pythonw.exe",
-        "python.exe"
+        "smss.exe", "conhost.exe", "wininit.exe", "pythonw.exe","python.exe",
+        "python.exe", "py.exe"
     ]
 
     terminated_processes = []

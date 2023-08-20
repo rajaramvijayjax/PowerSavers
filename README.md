@@ -10,10 +10,10 @@ https://www.python.org/downloads/
 3) Open Command Prompt in WIndows and visit the "pip.exe" folder location (typically C:\Users\USERNAMEXXXXX\AppData\Local\Programs\Python\Python311\Scripts"
 Run the following commands:
 
-pip install psutil
-
-pip install tk
-
-pip install psutil
+    pip install psutil
+    
+    pip install tk
+    
+    pip install psutil
 
 4) Place the attached .py file on any folder on your disk, then double click to run.

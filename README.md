@@ -7,7 +7,7 @@ https://www.python.org/downloads/
 
 2) Reboot. 
 
-3) Open Command Prompt in WIndows and visit the "pip.exe" folder location (typically C:\Users\USERNAMEXXXXX\AppData\Local\Programs\Python\Python311\Scripts"
+3) Open Command Prompt in WIndows and visit the "pip.exe" folder location (typically C:\Users\<<YOUR USER NAME>>\AppData\Local\Programs\Python\Python311\Scripts"
 Run the following commands:
 
     pip install psutil

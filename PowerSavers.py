@@ -1,13 +1,22 @@
 import os
 import tkinter as tk
 import psutil
+import pygetwindow as gw
+
+# Function to hide the IDLE window
+def hide_idle_window():
+    windows = gw.getWindowsWithTitle('')
+    for win in windows:
+        if "IDLE" in win.title:
+            win.minimize()
 
 # Function from Script B
 def kill_non_essential_processes():
     essential_processes = [
         "System", "svchost.exe", "explorer.exe", "winlogon.exe",
         "csrss.exe", "lsass.exe", "spoolsv.exe", "services.exe",
-        "smss.exe", "conhost.exe", "wininit.exe","pythonw.exe"
+        "smss.exe", "conhost.exe", "wininit.exe", "pythonw.exe",
+        "python.exe"
     ]
 
     terminated_processes = []
@@ -23,7 +32,7 @@ def kill_non_essential_processes():
 
         except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess):
             pass
-    
+
     return terminated_processes
 
 # Script A with modification
@@ -48,10 +57,20 @@ class ProcessKillerApp:
         self.button_kill_processes = tk.Button(root, text="Kill Non-Critical Processes", command=self.on_kill_processes_button)
         self.button_kill_processes.pack(padx=10, pady=5, fill=tk.X)
 
-        self.text_widget = tk.Text(root, height=2, width=40)
-        self.text_widget.pack(padx=10, pady=5, fill=tk.X)
+        self.scroll_frame = tk.Frame(root)
+        self.scroll_frame.pack(padx=10, pady=5, fill=tk.BOTH, expand=True)
+        
+        # Adjusting the text widget's height
+        self.text_widget = tk.Text(self.scroll_frame, height=20, width=40)
+        self.text_widget.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
 
-        self.current_power_scheme = ""
+        # Adding a Scrollbar
+        self.scrollbar = tk.Scrollbar(self.scroll_frame)
+        self.scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
+        
+        # Configuring the text widget to work with the scrollbar
+        self.text_widget.config(yscrollcommand=self.scrollbar.set)
+        self.scrollbar.config(command=self.text_widget.yview)
 
     def set_power_saver_mode(self):
         self.clear_status()
@@ -70,12 +89,14 @@ class ProcessKillerApp:
     def on_kill_processes_button(self):
         self.clear_status()
         self.text_widget.delete(1.0, tk.END)  # Clear previous contents
-        
+
+        hide_idle_window()  # Hide IDLE window before terminating processes
+
         terminated_processes = kill_non_essential_processes()
 
         for proc_name in terminated_processes:
             self.log_message(f"Terminated {proc_name}")
-        
+
         self.log_message("All non-critical processes killed.", status=True)
 
     def log_message(self, message, status=False):

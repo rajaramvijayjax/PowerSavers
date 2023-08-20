@@ -40,7 +40,7 @@ class ProcessKillerApp:
     def __init__(self, root):
         self.root = root
         self.root.title("Power Options")
-        self.root.geometry("500x300")
+        self.root.geometry("600x350")
 
         self.label = tk.Label(root, text="Select an option:")
         self.label.pack(padx=10, pady=10)
@@ -75,16 +75,19 @@ class ProcessKillerApp:
     def set_power_saver_mode(self):
         self.clear_status()
         self.log_message("Switching to Power Saver Mode...")
-        self.current_power_scheme = self.get_current_power_scheme()
         os.system("powercfg -s a1841308-3541-4fab-bc81-f71556f20b4a")
-        self.root.after(2000, lambda: self.log_message(f"SUCCESS. Current Power Scheme: {self.current_power_scheme}", status=True))
+        self.root.after(5000, self.update_power_scheme_status)
 
     def set_high_performance_mode(self):
         self.clear_status()
         self.log_message("Switching to High Performance Mode...")
-        self.current_power_scheme = self.get_current_power_scheme()
         os.system("powercfg -s 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c")
-        self.root.after(2000, lambda: self.log_message(f"SUCCESS. Current Power Scheme: {self.current_power_scheme}", status=True))
+        self.root.after(5000, self.update_power_scheme_status)
+
+    def update_power_scheme_status(self):
+        self.current_power_scheme = self.get_current_power_scheme()
+        self.log_message(f"SUCCESS. Current Power Scheme: {self.current_power_scheme}", status=True)
+
 
     def on_kill_processes_button(self):
         self.clear_status()
